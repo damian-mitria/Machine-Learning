@@ -1,21 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.ML" Version="1.6.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\ML.Data\ML.Data.csproj" />
     <ProjectReference Include="..\ML.Logica\ML.Logica.csproj" />
   </ItemGroup>
-
+  <ItemGroup Label="Frases">
+    <None Include="Frases.consumption.cs">
+      <DependentUpon>Frases.mbconfig</DependentUpon>
+    </None>
+    <None Include="Frases.training.cs">
+      <DependentUpon>Frases.mbconfig</DependentUpon>
+    </None>
+    <None Include="Frases.zip">
+      <DependentUpon>Frases.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

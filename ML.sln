@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML.Web", "ML\ML.Web.csproj", "{E89AD219-89A3-4F6D-997A-E98D70DA8879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML.Web", "ML\ML.Web.csproj", "{E89AD219-89A3-4F6D-997A-E98D70DA8879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML.Logica", "ML.Logica\ML.Logica.csproj", "{455B8CEF-E94F-4517-A3D4-6E4541B28D8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML.Logica", "ML.Logica\ML.Logica.csproj", "{455B8CEF-E94F-4517-A3D4-6E4541B28D8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML.Data", "ML.Data\ML.Data.csproj", "{EAB1FCC1-89D8-4C6F-8FC2-C4A26398E81D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML.Data", "ML.Data\ML.Data.csproj", "{EAB1FCC1-89D8-4C6F-8FC2-C4A26398E81D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

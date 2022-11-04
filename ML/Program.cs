@@ -1,5 +1,6 @@
 using ML.Data.Entidades;
 using ML.Logica;
+using ML_Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<MLContext>();
 builder.Services.AddScoped<ICategoriaServicio, CategoriaServicio>();
+
 
 var app = builder.Build();
 
