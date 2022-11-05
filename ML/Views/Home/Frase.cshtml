@@ -10,12 +10,11 @@
             <input type="text" asp-for="frase" class="form-control form-control-lg" />
         </div>
         <div class="m-2 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary rounded-pill">Enviar</button>
+            <button type="submit" class="btn btn-primary rounded-pill d-none">Enviar</button>
         </div>
     </form>
     <div class="m-1 mt-5 text-center ">
         <input id="valor" type="text" class="border-0 d-none" value="@ViewBag.dato" readonly/>
         <h4 id="resultado"></h4>
     </div>
-
 </div>  

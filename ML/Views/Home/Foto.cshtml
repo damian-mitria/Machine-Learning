@@ -1,37 +1,33 @@
-﻿
-@{
-        ViewData["Title"] = "Foto";
+﻿@{
+    ViewData["Title"] = "Foto";
 }
-<h3 class="text-center">Ingresar foto</h3>
+<h3 class="text-center mb-5">Ingresar foto</h3>
 
+<div class="container text-center">
+    <form action="/Home/Foto"
+          enctype="multipart/form-data"
+          method="post">
+        <dl>
+            <dt>
+                <label for="FileUpload_FormFile">File</label>
+            </dt>
+            <dd>
+                <input id="FileUpload_FormFile" type="file"
+                       name="FileUpload.FormFile" />
+            </dd>
+        </dl>
+        <input class="btn" type="submit" value="Upload" />
 
-<form action="/Home/Foto" 
-      enctype="multipart/form-data"  
-      method="post">
-    <dl>
-        <dt>
-            <label for="FileUpload_FormFile">File</label>
-        </dt>
-        <dd>
-            <input id="FileUpload_FormFile" type="file" 
-                name="FileUpload.FormFile" />
-        </dd>
-    </dl>
-
-    <input class="btn" type="submit" value="Upload" />
-
-    <div style="margin-top:15px">
-        <output name="result"></output>
+        <div style="margin-top:15px">
+            <output name="result"></output>
+        </div>
+    </form>
+    <div class="m-1">
+        Resultado: <input type="text" class="border-0" value="@ViewBag.resultadoFoto" readonly />
     </div>
-</form>
-
-
-
-<div class="m-1">
-    Resultado: <input type="text" class="border-0" value="@ViewBag.resultadoFoto" readonly />
+    <div class="m-1">
+        Resultado: <input type="text" class="border-0" value="@ViewBag.resultadoSQL" readonly />
+    </div>
 </div>
 
 
-<div class="m-1">
-    Resultado: <input type="text" class="border-0" value="@ViewBag.resultadoSQL" readonly />
-</div>
