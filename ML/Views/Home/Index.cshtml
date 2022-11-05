@@ -1,10 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<h1 class="text-center mt-5 mb-5">Bienvenidos a machine learning</h1>
-<h3 class="text-center">Elegí tu experiencia</h3>
+<div class="d-flex justify-content-center">
+    <h1 class="text-center mt-5 mb-5 typing">Bienvenidos a machine learning</h1>
+</div>
+<h3 class="text-center mb-3">Elegí tu experiencia</h3>
 <div class="container d-flex justify-content-center">
     <a class="nav-link p-5 m-3 text-dark btn btn-outline-danger" asp-area="" asp-controller="Home" asp-action="Foto">Foto</a>
     <a class="nav-link p-5 m-3 text-dark btn btn-outline-warning" asp-area="" asp-controller="Home" asp-action="Frase">Frase</a>
 </div>
+<script>AOS.init();</script>
