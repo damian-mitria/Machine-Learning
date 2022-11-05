@@ -35,6 +35,11 @@ namespace ML.Controllers
             return View();
         }
 
+        public IActionResult Informacion()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Frase(String frase)
         {
