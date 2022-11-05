@@ -137,9 +137,9 @@ body {
     display: block;
     white-space: nowrap;
     border-right: 4px solid;
-    width: 34ch;
+    width: 30ch;
 
-    animation: typing 2s steps(26), blink 0.6s infinite step-end alternate;
+    animation: typing 3s steps(30), blink 0.6s infinite step-end alternate;
     overflow: hidden;
 }
 
@@ -153,4 +153,16 @@ body {
     50% {
         border-color: transparent;
     }
+}
+
+.positivo {
+    -webkit-text-stroke: 0.8px black;
+    font-size: 50px;
+    color: green;
+}
+
+.negativo {
+    -webkit-text-stroke: 0.8px black;
+    font-size: 50px;
+    color: red;
 }
