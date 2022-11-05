@@ -2,6 +2,9 @@
 using ML.Logica;
 using ML_Web;
 using System.Diagnostics;
+using System.Drawing;
+using static ML_Web.Fotos;
+
 
 namespace ML.Controllers
 {
@@ -10,6 +13,8 @@ namespace ML.Controllers
 
         public string? frase { get; set; }
         public string? resultado { get; set; }
+
+        public string? porcentaje { get; set; }
         public ICategoriaServicio _CategoriaServicio { get; set; }
 
         public HomeController(ICategoriaServicio categoriaServicio)
@@ -23,10 +28,44 @@ namespace ML.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Foto()
         {
+            ViewBag.resultadoFoto = "";
+            ViewBag.resultadoSQL = "";
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Foto(ModelInput imagen)
+        {
+            
+            var sampleData = new Fotos.ModelInput();
+            sampleData.ImageSource = @"C:\Users\damia\OneDrive\Escritorio\silla-delfina-unican-1.jpg";
+
+            var result = Fotos.Predict(sampleData);
+
+            if (result.Prediction == "Lapiceras")
+            {
+                resultado = "Lapi";
+            }
+            if (result.Prediction == "Liquid Paper")
+            {
+                resultado = "Liqui";
+            }
+            if (result.Prediction == "Silla")
+            {
+                resultado = "Silla MOSTRELLI!!!";
+            }
+
+
+            ViewBag.resultadoFoto = resultado;
+
+            ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
+            return View();
+        }
+
+
 
         [HttpGet]
         public IActionResult Frase()

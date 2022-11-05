@@ -11,6 +11,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.ML" Version="1.6.0" />
+    <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="1.6.0" />
+    <PackageReference Include="Microsoft.ML.Vision" Version="1.6.0" />
+    <PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.3.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ML.Data\ML.Data.csproj" />
@@ -25,6 +28,18 @@
     </None>
     <None Include="Frases.zip">
       <DependentUpon>Frases.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup Label="Fotos">
+    <None Include="Fotos.consumption.cs">
+      <DependentUpon>Fotos.mbconfig</DependentUpon>
+    </None>
+    <None Include="Fotos.training.cs">
+      <DependentUpon>Fotos.mbconfig</DependentUpon>
+    </None>
+    <None Include="Fotos.zip">
+      <DependentUpon>Fotos.mbconfig</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
