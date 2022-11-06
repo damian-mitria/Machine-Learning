@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ML.Logica;
+using ML.Logica.Images;
 using ML_Web;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using static ML_Web.Fotos;
 
 
@@ -16,10 +18,12 @@ namespace ML.Controllers
 
         public string? porcentaje { get; set; }
         public ICategoriaServicio _CategoriaServicio { get; set; }
+        public IImagesServicio _ImagesServicio { get; set; }
 
-        public HomeController(ICategoriaServicio categoriaServicio)
+        public HomeController(ICategoriaServicio categoriaServicio, IImagesServicio imagesServicio)
         {
             _CategoriaServicio = categoriaServicio;
+            _ImagesServicio = imagesServicio;
             
         }
 
@@ -33,37 +37,44 @@ namespace ML.Controllers
         {
             ViewBag.resultadoFoto = "";
             ViewBag.resultadoSQL = "";
-            return View();
+
+            return View(_ImagesServicio.ObtenerImagenes());
         }
 
         [HttpPost]
-        public IActionResult Foto(ModelInput imagen)
+        public IActionResult Foto(IFormFile formFile)
         {
+
+            string path = _ImagesServicio.GuardarImagen(formFile);
+
+                var sampleData = new Fotos.ModelInput();
+                sampleData.ImageSource = path;
+
+                var result = Fotos.Predict(sampleData);
+
+                if (result.Prediction == "Lapiceras")
+                {
+                    resultado = "Lapi";
+                }
+                if (result.Prediction == "Liquid Paper")
+                {
+                    resultado = "Liqui";
+                }
+                if (result.Prediction == "Silla")
+                {
+                    resultado = "Silla MOSTRELLI!!!";
+                }
+
+                ViewBag.resultadoFoto = resultado;
+
+                ViewBag.ImageURL = formFile.FileName;
+
+                ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
+
+                return View(_ImagesServicio.ObtenerImagenes());
             
-            var sampleData = new Fotos.ModelInput();
-            sampleData.ImageSource = @"C:\Users\damia\OneDrive\Escritorio\silla-delfina-unican-1.jpg";
+            
 
-            var result = Fotos.Predict(sampleData);
-
-            if (result.Prediction == "Lapiceras")
-            {
-                resultado = "Lapi";
-            }
-            if (result.Prediction == "Liquid Paper")
-            {
-                resultado = "Liqui";
-            }
-            if (result.Prediction == "Silla")
-            {
-                resultado = "Silla MOSTRELLI!!!";
-            }
-
-
-            ViewBag.resultadoFoto = resultado;
-
-            ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
-            return View();
-        }
 
 
 

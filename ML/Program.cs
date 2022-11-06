@@ -1,12 +1,14 @@
 using ML.Data.Entidades;
+using ML.Logica.Images;
 using ML.Logica;
 using ML_Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<MLContext>();
+builder.Services.AddScoped<IImagesServicio, ImagesServicio>();
 builder.Services.AddScoped<ICategoriaServicio, CategoriaServicio>();
 
 
@@ -16,7 +18,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
