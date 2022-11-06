@@ -102,7 +102,7 @@ namespace ML.Controllers
 
                 ViewBag.resultadoFoto = resultado;
 
-                ViewBag.ImageURL = "images\\" + path;
+                ViewBag.ImageURL = formFile.FileName;
 
                 ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
 

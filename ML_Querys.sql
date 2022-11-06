@@ -27,7 +27,7 @@ GO
 
 CREATE TABLE [dbo].[Images](
 	[IdImages] [int] IDENTITY(1,1) PRIMARY KEY CLUSTERED NOT NULL,
-	[Nombre] [nvarchar](20) NOT NULL,
+	[Nombre] [nvarchar](100) NOT NULL,
 	[Path] [nvarchar](max) NULL
 )
 GO
