@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var valor = document.getElementById("valor").value;
+var resultado = document.getElementById("resultado");
 
-// Write your JavaScript code.
+console.log(valor)
+
+resultado.innerHTML = valor;
+if (valor == 'Positivo') {
+    resultado.className = "positivo"
+} else {
+    resultado.className = "negativo"
+}

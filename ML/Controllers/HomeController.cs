@@ -37,6 +37,7 @@ namespace ML.Controllers
         {
             ViewBag.resultadoFoto = "";
             ViewBag.resultadoSQL = "";
+
             return View(_ImagesServicio.ObtenerImagenes());
         }
 
@@ -73,7 +74,7 @@ namespace ML.Controllers
                 return View(_ImagesServicio.ObtenerImagenes());
             
             
-        }
+
 
 
 
