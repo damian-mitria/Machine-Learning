@@ -52,7 +52,12 @@ namespace ML.Controllers
 
                 formFile.CopyToAsync(stream);
 
-                ViewBag.Message = "File uploaded successfully.";
+                stream.Close();
+                stream.Dispose();
+
+                string res =  System.IO.Path.GetDirectoryName(formFile.FileName);
+
+                ViewBag.Message = res;
                 ViewBag.ImageURL = "images\\" + fileName;
             }
             catch
@@ -74,19 +79,11 @@ namespace ML.Controllers
         [HttpPost]
         public IActionResult Foto(IFormFile formFile)
         {
-            string fileName = Path.GetFileName(formFile.FileName);
 
-            string uploadpath = Path.Combine(Directory.GetCurrentDirectory(),
-                                            "wwwroot\\images", fileName);
-
-            var stream = new FileStream(uploadpath, FileMode.Create, FileAccess.Read, FileShare.Read);
-
-            using (stream)
-            {
-                formFile.CopyToAsync(stream);
+            string path = _ImagesServicio.guardarImagen(formFile);
 
                 var sampleData = new Fotos.ModelInput();
-                sampleData.ImageSource = uploadpath;
+                sampleData.ImageSource = path;
 
                 var result = Fotos.Predict(sampleData);
 
@@ -105,11 +102,12 @@ namespace ML.Controllers
 
                 ViewBag.resultadoFoto = resultado;
 
-                ViewBag.ImageURL = "images\\" + fileName;
+                ViewBag.ImageURL = "images\\" + path;
 
                 ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
+
                 return View();
-            }
+            
             
         }
 

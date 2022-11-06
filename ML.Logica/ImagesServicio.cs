@@ -27,9 +27,10 @@ namespace ML.Logica.Images
 
                 var stream = new FileStream(uploadpath, FileMode.Create);
 
-                formFile.CopyToAsync(stream);
+                formFile.CopyTo(stream);
 
-                stream.DisposeAsync();
+                stream.Close();
+                stream.Dispose();
 
                 return  uploadpath;
             }
