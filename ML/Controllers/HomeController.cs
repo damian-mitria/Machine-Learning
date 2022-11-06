@@ -33,54 +33,18 @@ namespace ML.Controllers
         }
 
         [HttpGet]
-        public IActionResult PruebaFoto()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult PruebaFoto(IFormFile formFile)
-        {
-            try 
-            {
-                string fileName = Path.GetFileName(formFile.FileName);
-
-                string uploadpath = Path.Combine(Directory.GetCurrentDirectory(),
-                                                  "wwwroot\\images", fileName);
-
-                var stream = new FileStream(uploadpath, FileMode.Create);
-
-                formFile.CopyToAsync(stream);
-
-                stream.Close();
-                stream.Dispose();
-
-                string res =  System.IO.Path.GetDirectoryName(formFile.FileName);
-
-                ViewBag.Message = res;
-                ViewBag.ImageURL = "images\\" + fileName;
-            }
-            catch
-            {
-                ViewBag.Message = "Error while uploading the files.";
-            }
-            return View();
-
-        }
-
-        [HttpGet]
         public IActionResult Foto()
         {
             ViewBag.resultadoFoto = "";
             ViewBag.resultadoSQL = "";
-            return View();
+            return View(_ImagesServicio.ObtenerImagenes());
         }
 
         [HttpPost]
         public IActionResult Foto(IFormFile formFile)
         {
 
-            string path = _ImagesServicio.guardarImagen(formFile);
+            string path = _ImagesServicio.GuardarImagen(formFile);
 
                 var sampleData = new Fotos.ModelInput();
                 sampleData.ImageSource = path;
@@ -106,7 +70,7 @@ namespace ML.Controllers
 
                 ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
 
-                return View();
+                return View(_ImagesServicio.ObtenerImagenes());
             
             
         }

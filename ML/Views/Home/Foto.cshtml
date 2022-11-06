@@ -1,7 +1,7 @@
 ﻿
-@{
-        ViewData["Title"] = "Foto";
+@{   ViewData["Title"] = "Foto";
 }
+@model List<ML.Data.Entidades.Image>
 <h3 class="text-center">Ingresar foto</h3>
 
 @using (Html.BeginForm("Foto", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
@@ -27,3 +27,10 @@
     Resultado: <input type="text" class="border-0" value="@ViewBag.resultadoSQL" readonly />
 </div>
 
+@if(Model != null)
+{
+    @foreach (var image in Model)
+    {
+    <img src="~/images/@image.Nombre" class="rounded" alt="...">
+    }
+}

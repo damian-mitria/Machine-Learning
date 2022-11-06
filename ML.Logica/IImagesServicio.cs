@@ -11,7 +11,11 @@ namespace ML.Logica.Images
     public interface IImagesServicio
     {
 
-        string guardarImagen(IFormFile formFile);
+        string GuardarImagen(IFormFile formFile);
+
+        void GuardarEnBd(string path,string nombre);
+
+        List<Image> ObtenerImagenes();
 
     }
 }
