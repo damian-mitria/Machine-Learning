@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ML.Logica;
+using ML.Logica.Images;
 using ML_Web;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using static ML_Web.Fotos;
+
 
 namespace ML.Controllers
 {
@@ -10,11 +15,15 @@ namespace ML.Controllers
 
         public string? frase { get; set; }
         public string? resultado { get; set; }
-        public ICategoriaServicio _CategoriaServicio { get; set; }
 
-        public HomeController(ICategoriaServicio categoriaServicio)
+        public string? porcentaje { get; set; }
+        public ICategoriaServicio _CategoriaServicio { get; set; }
+        public IImagesServicio _ImagesServicio { get; set; }
+
+        public HomeController(ICategoriaServicio categoriaServicio, IImagesServicio imagesServicio)
         {
             _CategoriaServicio = categoriaServicio;
+            _ImagesServicio = imagesServicio;
             
         }
 
@@ -23,10 +32,88 @@ namespace ML.Controllers
             return View();
         }
 
-        public IActionResult Foto()
+        [HttpGet]
+        public IActionResult PruebaFoto()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult PruebaFoto(IFormFile formFile)
+        {
+            try 
+            {
+                string fileName = Path.GetFileName(formFile.FileName);
+
+                string uploadpath = Path.Combine(Directory.GetCurrentDirectory(),
+                                                  "wwwroot\\images", fileName);
+
+                var stream = new FileStream(uploadpath, FileMode.Create);
+
+                formFile.CopyToAsync(stream);
+
+                ViewBag.Message = "File uploaded successfully.";
+                ViewBag.ImageURL = "images\\" + fileName;
+            }
+            catch
+            {
+                ViewBag.Message = "Error while uploading the files.";
+            }
+            return View();
+
+        }
+
+        [HttpGet]
+        public IActionResult Foto()
+        {
+            ViewBag.resultadoFoto = "";
+            ViewBag.resultadoSQL = "";
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Foto(IFormFile formFile)
+        {
+            string fileName = Path.GetFileName(formFile.FileName);
+
+            string uploadpath = Path.Combine(Directory.GetCurrentDirectory(),
+                                            "wwwroot\\images", fileName);
+
+            var stream = new FileStream(uploadpath, FileMode.Create, FileAccess.Read, FileShare.Read);
+
+            using (stream)
+            {
+                formFile.CopyToAsync(stream);
+
+                var sampleData = new Fotos.ModelInput();
+                sampleData.ImageSource = uploadpath;
+
+                var result = Fotos.Predict(sampleData);
+
+                if (result.Prediction == "Lapiceras")
+                {
+                    resultado = "Lapi";
+                }
+                if (result.Prediction == "Liquid Paper")
+                {
+                    resultado = "Liqui";
+                }
+                if (result.Prediction == "Silla")
+                {
+                    resultado = "Silla MOSTRELLI!!!";
+                }
+
+                ViewBag.resultadoFoto = resultado;
+
+                ViewBag.ImageURL = "images\\" + fileName;
+
+                ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
+                return View();
+            }
+            
+        }
+
+
 
         [HttpGet]
         public IActionResult Frase()
