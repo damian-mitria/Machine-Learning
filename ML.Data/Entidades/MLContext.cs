@@ -33,7 +33,7 @@ namespace ML.Data.Entidades
             modelBuilder.Entity<Categorium>(entity =>
             {
                 entity.HasKey(e => e.IdCategoria)
-                    .HasName("PK__Categori__A3C02A104B3110D9");
+                    .HasName("PK__Categori__A3C02A10CF4BB5D7");
 
                 entity.Property(e => e.Nombre).HasMaxLength(20);
             });
@@ -41,7 +41,7 @@ namespace ML.Data.Entidades
             modelBuilder.Entity<Image>(entity =>
             {
                 entity.HasKey(e => e.IdImages)
-                    .HasName("PK__Images__B42D8F2F7E70EBDE");
+                    .HasName("PK__Images__B42D8F2F34D3E947");
 
                 entity.Property(e => e.Nombre).HasMaxLength(100);
             });
