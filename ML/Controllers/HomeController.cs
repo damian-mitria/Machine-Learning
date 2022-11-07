@@ -24,7 +24,7 @@ namespace ML.Controllers
         {
             _CategoriaServicio = categoriaServicio;
             _ImagesServicio = imagesServicio;
-            
+
         }
 
         public IActionResult Index()
@@ -47,33 +47,33 @@ namespace ML.Controllers
 
             string path = _ImagesServicio.GuardarImagen(formFile);
 
-                var sampleData = new Fotos.ModelInput();
-                sampleData.ImageSource = path;
+            var sampleData = new Fotos.ModelInput();
+            sampleData.ImageSource = path;
 
-                var result = Fotos.Predict(sampleData);
+            var result = Fotos.Predict(sampleData);
 
-                if (result.Prediction == "Lapiceras")
-                {
-                    resultado = "Lapi";
-                }
-                if (result.Prediction == "Liquid Paper")
-                {
-                    resultado = "Liqui";
-                }
-                if (result.Prediction == "Silla")
-                {
-                    resultado = "Silla MOSTRELLI!!!";
-                }
+            if (result.Prediction == "Lapiceras")
+            {
+                resultado = "Lapi";
+            }
+            if (result.Prediction == "Liquid Paper")
+            {
+                resultado = "Liqui";
+            }
+            if (result.Prediction == "Silla")
+            {
+                resultado = "Silla MOSTRELLI!!!";
+            }
 
-                ViewBag.resultadoFoto = resultado;
+            ViewBag.resultadoFoto = resultado;
 
-                ViewBag.ImageURL = formFile.FileName;
+            ViewBag.ImageURL = formFile.FileName;
 
-                ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
+            ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
 
-                return View(_ImagesServicio.ObtenerImagenes());
-            
-            
+            return View(_ImagesServicio.ObtenerImagenes());
+
+        }
 
 
 
@@ -100,18 +100,17 @@ namespace ML.Controllers
 
             if ((int)prediccion.Prediction == 0)
             {
-                resultado = "Negativo"; 
+                resultado = "Negativo";
             }
-            else 
+            else
             {
                 resultado = "Positivo";
             }
 
             ViewBag.dato = resultado;
-           
+
             return View();
         }
-
 
 
     }
