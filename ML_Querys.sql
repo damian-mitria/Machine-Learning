@@ -31,3 +31,8 @@ CREATE TABLE [dbo].[Images](
 	[Path] [nvarchar](max) NULL
 )
 GO
+
+
+INSERT [dbo].[Categoria] ([IdCategoria], [Nombre], [Descripcion]) VALUES (1, N'Lapiceras', N'Utensilio para escribir que consiste en un tubo hueco, de plástico o de metal, con un depósito cilíndrico de una tinta viscosa en su interior y una bolita metálica en la punta que gira libremente y hace salir la tinta de forma uniforme.')
+INSERT [dbo].[Categoria] ([IdCategoria], [Nombre], [Descripcion]) VALUES (2, N'Silla', N'Asiento individual con patas y respaldo.')
+INSERT [dbo].[Categoria] ([IdCategoria], [Nombre], [Descripcion]) VALUES (3, N'Liquid Paper', N'Corrector líquido opaco que se utiliza para ocultar los errores de escritura en un papel, evitando escribir de nuevo una hoja entera.')
