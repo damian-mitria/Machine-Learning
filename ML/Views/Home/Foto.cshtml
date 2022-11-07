@@ -4,43 +4,50 @@
     ViewData["Title"] = "Foto";
 }
 
-<h3 class="text-center mb-5">Ingresar foto</h3>
+@*<h3 class="text-center mb-5">Ingresar foto</h3>*@
 <div class="container text-center">
     @using (Html.BeginForm("Foto", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
     {
         <span style="color:red;">@ViewBag.Message</span>
         <div class="m-1">
-            <input type="file" name="formFile" accept=".png,.jpg,image"/>
+            <input type="file" name="formFile" id="upload-photo" accept=".png,.jpg,image" />
+            <label id="label" for="upload-photo" class="fs-4 fw-normal">¿
+                <img src="/css/upload-svgrepo-com.svg" width="25px">ué será esto?
+            </label>
         </div>
-        <div class="m-1">
-            <button type="submit" class="btn btn-primary rounded-pill">Enviar</button>
+        <div class="m-1 mt-5 mb-3">
+            <button type="submit" class="border-0 bg-transparent" onclick="comprobar(e)">
+                ¡Presióname para responderte
+                <img src="/css/robot-svgrepo-com.svg" width="40px">
+                !
+            </button>
         </div>
-       
+
         @if (ViewBag.ImageURL != null)
         {
             <img src="~/images/@ViewBag.ImageURL" width="300px" height="200px" />
         }
     }
 
-    <div class="m-1">
-        <label for="Resultado" class="d-flex justify-content-center">Resultado:</label>
-        <input type="text" name="Resultado" class="border-0" value="@ViewBag.resultadoFoto" readonly />
+    <div class="m-1 mt-5 d-flex justify-content-center">
+        <label for="Resultado" class="d-flex justify-content-center me-2">Resultado:</label>
+        <p id="resultado"></p>
+        <input type="text" name="Resultado" class="border-0 d-none" id="result" value="@ViewBag.resultadoFoto" readonly />
     </div>
 
-    <div class="m-1">
+    <div class="m-1 d-flex justify-content-center">
         <label for="porcentaje" class="d-flex justify-content-center">Porcentaje de prediccion:</label>
-        <input type="text" name="porcentaje" class="border-0" value="@ViewBag.porcentaje" readonly /> %
+        <p id="porcentaje"></p>
+        <input type="text" name="porcentaje" class="border-0 d-none" id="porcent" value="@ViewBag.porcentaje" readonly /> %
     </div>
 
-    <div class="m-1">
-        <label for="descripcion" class="d-flex justify-content-center">Descripcion del objeto:</label>
-        <textarea id="descripcion" name="descripcion" placeholder="@ViewBag.resultadoSQL" rows="4" cols="70">
+    <div class="m-1 d-flex justify-content-center">
+        <textarea id="descripcion" name="descripcion" style="resize: none;" class="bg-transparent border-0" placeholder="@ViewBag.resultadoSQL" rows="4" cols="70">
             @ViewBag.resultadoSQL
         </textarea>
     </div>
 
-
-    <div class="m-1">
+    <div class="m-1 mt-5">
         <h3>Objetos ya scaneados:</h3>
         @if (Model != null)
         {
@@ -51,3 +58,6 @@
         }
     </div>
 </div>
+
+
+<script src="~/js/foto.js" asp-append-version="true"></script>
