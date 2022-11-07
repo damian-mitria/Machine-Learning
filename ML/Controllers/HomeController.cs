@@ -54,22 +54,24 @@ namespace ML.Controllers
 
             if (result.Prediction == "Lapiceras")
             {
-                resultado = "Lapi";
+                resultado = "Es una lapicera";
             }
             if (result.Prediction == "Liquid Paper")
             {
-                resultado = "Liqui";
+                resultado = "Es un liquid paper";
             }
             if (result.Prediction == "Silla")
             {
-                resultado = "Silla MOSTRELLI!!!";
+                resultado = "Es una silla";
             }
 
             ViewBag.resultadoFoto = resultado;
 
             ViewBag.ImageURL = formFile.FileName;
 
-            ViewBag.resultadoSQL = sampleData.ImageSource.ToString();
+            ViewBag.porcentaje = result.Score.Max().ToString();
+
+            ViewBag.resultadoSQL = _CategoriaServicio.GetDescription(result.Prediction);
 
             return View(_ImagesServicio.ObtenerImagenes());
 

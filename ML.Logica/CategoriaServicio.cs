@@ -17,6 +17,11 @@ namespace ML.Logica
             _context = context;
         }
 
+        public dynamic GetDescription(string prediction)
+        {
+            return _context.Categoria.Where(c=>c.Nombre.Equals(prediction)).FirstOrDefault().Descripcion;
+        }
+
         public void guardar(Categorium categoria)
         {
             _context.Categoria.Add(categoria);

@@ -1,17 +1,21 @@
+@model List<ML.Data.Entidades.Image>
+
 @{
     ViewData["Title"] = "Foto";
 }
-@model List<ML.Data.Entidades.Image>
+
 <h3 class="text-center mb-5">Ingresar foto</h3>
 <div class="container text-center">
     @using (Html.BeginForm("Foto", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
     {
         <span style="color:red;">@ViewBag.Message</span>
-        <br />
-        <input type="file" name="formFile" accept=".png,.jpg,image"/>
-        <input type="submit" value="Submit" />
-        <br />
-        <br />
+        <div class="m-1">
+            <input type="file" name="formFile" accept=".png,.jpg,image"/>
+        </div>
+        <div class="m-1">
+            <button type="submit" class="btn btn-primary rounded-pill">Enviar</button>
+        </div>
+       
         @if (ViewBag.ImageURL != null)
         {
             <img src="~/images/@ViewBag.ImageURL" width="300px" height="200px" />
@@ -19,18 +23,31 @@
     }
 
     <div class="m-1">
-        Resultado: <input type="text" class="border-0" value="@ViewBag.resultadoFoto" readonly />
+        <label for="Resultado" class="d-flex justify-content-center">Resultado:</label>
+        <input type="text" name="Resultado" class="border-0" value="@ViewBag.resultadoFoto" readonly />
     </div>
 
     <div class="m-1">
-        Resultado: <input type="text" class="border-0" value="@ViewBag.resultadoSQL" readonly />
+        <label for="porcentaje" class="d-flex justify-content-center">Porcentaje de prediccion:</label>
+        <input type="text" name="porcentaje" class="border-0" value="@ViewBag.porcentaje" readonly /> %
     </div>
 
-    @if (Model != null)
-    {
-        @foreach (var image in Model)
+    <div class="m-1">
+        <label for="descripcion" class="d-flex justify-content-center">Descripcion del objeto:</label>
+        <textarea id="descripcion" name="descripcion" placeholder="@ViewBag.resultadoSQL" rows="4" cols="70">
+            @ViewBag.resultadoSQL
+        </textarea>
+    </div>
+
+
+    <div class="m-1">
+        <h3>Objetos ya scaneados:</h3>
+        @if (Model != null)
         {
-            <img src="~/images/@image.Nombre" class="rounded" alt="...">
+            @foreach (var image in Model)
+            {
+                <img src="~/images/@image.Nombre" class="rounded-circle m-1" width="100px">
+            }
         }
-    }
+    </div>
 </div>
