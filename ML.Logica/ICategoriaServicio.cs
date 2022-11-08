@@ -9,7 +9,7 @@ namespace ML.Logica
 {
     public interface ICategoriaServicio
     {
-
+        dynamic GetDescription(string prediction);
         void guardar(Categorium categoria);
 
   

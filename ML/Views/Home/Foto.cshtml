@@ -1,5 +1,66 @@
-ï»¿
+@model List<ML.Data.Entidades.Image>
+
 @{
-        ViewData["Title"] = "Foto";
+    ViewData["Title"] = "Foto";
 }
-<h3 class="text-center">Ingresar foto</h3>
+
+@*<h3 class="text-center mb-5">Ingresar foto</h3>*@
+<div class="container text-center">
+    @using (Html.BeginForm("Foto", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        <span style="color:red;">@ViewBag.Message</span>
+        <div class="m-1">
+            <input type="file" name="formFile" id="upload-photo" accept=".png,.jpg,image" />
+            <label id="label" for="upload-photo" class="fs-3 fw-normal">¿
+                <img src="/css/upload-svgrepo-com.svg" width="30px">ué será esto?
+            </label>
+            <p class="text-warning" id="comprobadorF">Todavia no se subio ningun archivo</p>
+            <p class="text-success d-none" id="comprobadorT">¡Listo para saber que es!</p>
+
+        </div>
+        <div class="m-1 mt-5 mb-3">
+            <button type="submit" class="border-0 bg-transparent" onclick="comprobar(e)">
+                ¡Presióname para responderte
+                <img src="/css/robot-svgrepo-com.svg" width="40px">
+                !
+            </button>
+        </div>
+
+        @if (ViewBag.ImageURL != null)
+        {
+            <img src="~/images/@ViewBag.ImageURL" width="300px" height="200px" />
+        }
+    }
+
+    <div class="m-1 mt-5 d-flex justify-content-center">
+        <label for="Resultado" class="d-flex justify-content-center me-2">Resultado:</label>
+        <p id="resultado"></p>
+        <input type="text" name="Resultado" class="border-0 d-none" id="result" value="@ViewBag.resultadoFoto" readonly />
+    </div>
+
+    <div class="m-1 d-flex justify-content-center">
+        <label for="porcentaje" class="d-flex justify-content-center me-2">Porcentaje de prediccion:</label>
+        <p id="porcentaje"></p>
+        <input type="text" name="porcentaje" class="border-0 d-none" id="porcent" value="@ViewBag.porcentaje" readonly /> %
+    </div>
+
+    <div class="m-1 d-flex justify-content-center">
+        <p class="container">
+            @ViewBag.resultadoSQL
+        </p>
+    </div>
+
+    <div class="m-1 mt-5">
+        <h3>Objetos ya scaneados:</h3>
+        @if (Model != null)
+        {
+            @foreach (var image in Model)
+            {
+                <img src="~/images/@image.Nombre" class="rounded-circle m-1" width="100" height="100">
+            }
+        }
+    </div>
+</div>
+
+
+<script src="~/js/foto.js" asp-append-version="true"></script>

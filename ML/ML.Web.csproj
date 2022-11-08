@@ -1,21 +1,51 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.ML" Version="1.6.0" />
+    <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="1.6.0" />
+    <PackageReference Include="Microsoft.ML.Vision" Version="1.6.0" />
+    <PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.3.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\ML.Data\ML.Data.csproj" />
     <ProjectReference Include="..\ML.Logica\ML.Logica.csproj" />
+  </ItemGroup>
+  <ItemGroup Label="Frases">
+    <None Include="Frases.consumption.cs">
+      <DependentUpon>Frases.mbconfig</DependentUpon>
+    </None>
+    <None Include="Frases.training.cs">
+      <DependentUpon>Frases.mbconfig</DependentUpon>
+    </None>
+    <None Include="Frases.zip">
+      <DependentUpon>Frases.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup Label="Fotos">
+    <None Include="Fotos.consumption.cs">
+      <DependentUpon>Fotos.mbconfig</DependentUpon>
+    </None>
+    <None Include="Fotos.training.cs">
+      <DependentUpon>Fotos.mbconfig</DependentUpon>
+    </None>
+    <None Include="Fotos.zip">
+      <DependentUpon>Fotos.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

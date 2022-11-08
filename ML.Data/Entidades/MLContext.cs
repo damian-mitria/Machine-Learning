@@ -17,6 +17,7 @@ namespace ML.Data.Entidades
         }
 
         public virtual DbSet<Categorium> Categoria { get; set; } = null!;
+        public virtual DbSet<Image> Images { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,9 +33,17 @@ namespace ML.Data.Entidades
             modelBuilder.Entity<Categorium>(entity =>
             {
                 entity.HasKey(e => e.IdCategoria)
-                    .HasName("PK__Categori__A3C02A104B3110D9");
+                    .HasName("PK__Categori__A3C02A10CF4BB5D7");
 
                 entity.Property(e => e.Nombre).HasMaxLength(20);
+            });
+
+            modelBuilder.Entity<Image>(entity =>
+            {
+                entity.HasKey(e => e.IdImages)
+                    .HasName("PK__Images__B42D8F2F34D3E947");
+
+                entity.Property(e => e.Nombre).HasMaxLength(100);
             });
 
             OnModelCreatingPartial(modelBuilder);
