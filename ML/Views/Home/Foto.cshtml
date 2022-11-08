@@ -39,15 +39,15 @@
     </div>
 
     <div class="m-1 d-flex justify-content-center">
-        <label for="porcentaje" class="d-flex justify-content-center">Porcentaje de prediccion:</label>
+        <label for="porcentaje" class="d-flex justify-content-center me-2">Porcentaje de prediccion:</label>
         <p id="porcentaje"></p>
         <input type="text" name="porcentaje" class="border-0 d-none" id="porcent" value="@ViewBag.porcentaje" readonly /> %
     </div>
 
     <div class="m-1 d-flex justify-content-center">
-        <textarea id="descripcion" name="descripcion" style="resize: none;" class="bg-transparent border-0" placeholder="@ViewBag.resultadoSQL" rows="4" cols="70">
+        <p class="container">
             @ViewBag.resultadoSQL
-        </textarea>
+        </p>
     </div>
 
     <div class="m-1 mt-5">
