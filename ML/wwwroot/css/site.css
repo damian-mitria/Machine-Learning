@@ -169,6 +169,13 @@ body {
 
 .oculto {
     display:none;
+    visibility:hidden;
+}
+
+.visible{
+    display:block;
+    visibility:visible;
+    color:greenyellow;
 }
 
 #label {
