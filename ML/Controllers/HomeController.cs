@@ -65,13 +65,11 @@ namespace ML.Controllers
                 resultado = "Es una silla";
             }
 
-            var prediccion = result.Score.Max() * 100;
-
             ViewBag.resultadoFoto = resultado;
 
             ViewBag.ImageURL = formFile.FileName;
 
-            ViewBag.porcentaje = prediccion.ToString();
+            ViewBag.porcentaje = (result.Score.Max() * 100).ToString();
 
             ViewBag.resultadoSQL = _CategoriaServicio.GetDescription(result.Prediction);
 
