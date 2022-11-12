@@ -71,7 +71,9 @@ namespace ML.Controllers
 
             ViewBag.porcentaje = (result.Score.Max() * 100).ToString();
 
-            ViewBag.resultadoSQL = _CategoriaServicio.GetDescription(result.Prediction);
+            //ViewBag.resultadoSQL = _CategoriaServicio.GetDescription(result.Prediction);
+
+            ViewBag.resultadoSQL = _CategoriaServicio.GetInformacion(result.Prediction);
 
             return View(_ImagesServicio.ObtenerImagenes());
 

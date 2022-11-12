@@ -12,6 +12,7 @@ namespace ML.Logica
         dynamic GetDescription(string prediction);
         void guardar(Categorium categoria);
 
+        dynamic GetInformacion(string prediction);
   
     }
 }

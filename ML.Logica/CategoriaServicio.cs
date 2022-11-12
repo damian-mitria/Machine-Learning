@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using System.Security.Policy;
+using static System.Net.WebRequestMethods;
+using System.Text.Encodings.Web;
+using System.Net.NetworkInformation;
+using System.Xml;
 
 namespace ML.Logica
 {
@@ -20,6 +26,17 @@ namespace ML.Logica
         public dynamic GetDescription(string prediction)
         {
             return _context.Categoria.Where(c=>c.Nombre.Equals(prediction)).FirstOrDefault().Descripcion;
+        }
+
+        public dynamic GetInformacion(string prediction)
+        {
+            String url = String.Format("https://es.wikipedia.org/wiki/{0}", prediction);
+            WebClient webClient = new WebClient();
+            webClient.Encoding = Encoding.UTF8;
+
+            String respuesta = webClient.DownloadString(url);
+
+            return respuesta;
         }
 
         public void guardar(Categorium categoria)
