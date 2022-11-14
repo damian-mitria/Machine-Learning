@@ -10,6 +10,9 @@ using static System.Net.WebRequestMethods;
 using System.Text.Encodings.Web;
 using System.Net.NetworkInformation;
 using System.Xml;
+using System.Xml.Linq;
+using Newtonsoft.Json;
+using System.Dynamic;
 
 namespace ML.Logica
 {
@@ -30,14 +33,14 @@ namespace ML.Logica
 
         public dynamic GetInformacion(string prediction)
         {
+            if (prediction == "Silla") prediction = "Asiento";
             String url = String.Format("https://es.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch={0}", prediction);
             WebClient webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
-
             String respuesta = webClient.DownloadString(url);
-            var = 223
-
-            return respuesta;
+            dynamic jsonObj = JsonConvert.DeserializeObject(respuesta);
+            var informacion = jsonObj["query"]["search"][0]["snippet"].ToString();
+            return informacion;
         }
 
         public void guardar(Categorium categoria)
