@@ -13,6 +13,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 using System.Dynamic;
+using System.Text.RegularExpressions;
 
 namespace ML.Logica
 {
@@ -28,7 +29,7 @@ namespace ML.Logica
 
         public dynamic GetDescription(string prediction)
         {
-            return _context.Categoria.Where(c=>c.Nombre.Equals(prediction)).FirstOrDefault().Descripcion;
+            return _context.Categoria.Where(c => c.Nombre.Equals(prediction)).FirstOrDefault().Descripcion;
         }
 
         public dynamic GetInformacion(string prediction)
@@ -38,7 +39,8 @@ namespace ML.Logica
             WebClient webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
             String respuesta = webClient.DownloadString(url);
-            dynamic jsonObj = JsonConvert.DeserializeObject(respuesta);
+            String cadenaSinTags = Regex.Replace(respuesta, "<.*?>", string.Empty); // remuevo los tags que vienen desde la api de wiki
+            dynamic jsonObj = JsonConvert.DeserializeObject(cadenaSinTags);
             var informacion = jsonObj["query"]["search"][0]["snippet"].ToString();
             return informacion;
         }
