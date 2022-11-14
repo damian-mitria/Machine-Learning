@@ -30,7 +30,7 @@ namespace ML.Logica
 
         public dynamic GetInformacion(string prediction)
         {
-            String url = String.Format("https://es.wikipedia.org/wiki/{0}", prediction);
+            String url = String.Format("https://es.wikipedia.org/w/api.php?action=query&list=search&srprop=snippet&format=json&origin=*&utf8=&srsearch={0}", prediction);
             WebClient webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
 
