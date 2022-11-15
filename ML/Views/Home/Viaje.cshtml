@@ -1,0 +1,41 @@
+﻿@using ML.Data.Entidades
+@model ML.Controllers.HomeController
+@{
+    ViewData["Title"] = "Viaje";
+}
+<h3 class="text-center mb-5">Ingresar datos del viaje</h3>
+
+<div class="container">
+    <form action="/Home/Viaje" method="post">
+        <div class="m-1">
+            <input type="text" hidden value="CMT" name="Vendor_id" class="form-control form-control-lg" />
+        </div>
+        <div class="m-1">
+            <input type="number" hidden  value="1" name="Rate_code" class="form-control form-control-lg" />
+        </div>
+        <div class="m-1">
+            <input type="number" placeholder="Cantidad de pasajeros"
+             name="Passenger_count" class="form-control form-control-lg" />
+        </div>
+        <div class="m-1">
+            <input type="number" placeholder="Distancia"
+             name="Trip_distance" class="form-control form-control-lg" />
+        </div>
+        <div class="m-1">
+            <input type="text" placeholder="CSH" name="Payment_type" class="form-control form-control-lg" />
+        </div>
+        <div class="m-2 d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary rounded-pill d-none">Enviar</button>
+        </div>
+    </form>
+    
+    <div class="m-1 mt-5 text-center ">
+        <input id="valor" type="text" class="border-0 d-none" value="@ViewBag.dato" readonly/>
+        <h4 id="resultado"></h4>
+    </div>
+
+    
+    
+</div>
+
+<script src="~/js/frase.js" asp-append-version="true"></script>

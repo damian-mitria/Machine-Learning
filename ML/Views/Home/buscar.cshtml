@@ -1,0 +1,20 @@
+﻿@model ML.Controllers.HomeController
+@{
+    ViewData["Title"] = "Buscar";
+}
+<h3 class="text-center mb-5">Bublear</h3>
+
+<div class="container">
+    <form action="/Home/Buscar" method="post">
+        <div class="m-1">
+            <input type="text" name="buscar" class="form-control form-control-lg" />
+        </div>
+        <div class="m-2 d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary rounded-pill d-none">Enviar</button>
+        </div>
+    </form>
+    <div class="m-1 mt-5 text-center ">
+        <h3>@ViewBag.buscar</h3>
+        <h4 id="resultado">@ViewBag.resultadoBusqueda</h4>
+    </div>
+</div>
