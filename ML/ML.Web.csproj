@@ -47,5 +47,10 @@
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\Datos\taxi-fare-train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ML.Data.Entidades;
 using ML.Logica;
 using ML.Logica.Images;
 using ML_Web;
@@ -19,12 +20,13 @@ namespace ML.Controllers
         public string? porcentaje { get; set; }
         public ICategoriaServicio _CategoriaServicio { get; set; }
         public IImagesServicio _ImagesServicio { get; set; }
+        public IViajeServicio _ViajeServicio { get; set; }
 
-        public HomeController(ICategoriaServicio categoriaServicio, IImagesServicio imagesServicio)
+        public HomeController(ICategoriaServicio categoriaServicio, IImagesServicio imagesServicio, IViajeServicio viajeServicio)
         {
             _CategoriaServicio = categoriaServicio;
             _ImagesServicio = imagesServicio;
-
+            _ViajeServicio = viajeServicio;
         }
 
         public IActionResult Index()
@@ -117,17 +119,31 @@ namespace ML.Controllers
         }
 
         [HttpGet]
+        public IActionResult Viaje()
+        {
+            ViewBag.dato = "";
+        }
+        
+        [HttpGet]
         public IActionResult Buscar()
         {
             ViewBag.resultado = "";
+
             return View();
         }
 
         [HttpPost]
+        public IActionResult Viaje(ViajeModel viajeModel)
+        {
+            ViewBag.dato = _ViajeServicio.predecirPrecio(viajeModel);
+        }
+        
+        
         public IActionResult Buscar(String buscar)
         {
             ViewBag.buscar = (String)buscar;
             ViewBag.resultadoBusqueda = _CategoriaServicio.GetInformacion(buscar);
+
             return View();
         }
 

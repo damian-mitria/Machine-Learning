@@ -50,5 +50,7 @@ namespace ML.Logica
             _context.Categoria.Add(categoria);
             _context.SaveChanges();
         }
+
+     
     }
 }
