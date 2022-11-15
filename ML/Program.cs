@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<MLContext>();
 builder.Services.AddScoped<IImagesServicio, ImagesServicio>();
 builder.Services.AddScoped<ICategoriaServicio, CategoriaServicio>();
+builder.Services.AddScoped<IViajeServicio, ViajeServicio>();
 
 
 var app = builder.Build();
