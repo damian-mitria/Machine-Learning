@@ -116,6 +116,21 @@ namespace ML.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Buscar()
+        {
+            ViewBag.resultado = "";
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Buscar(String buscar)
+        {
+            ViewBag.buscar = (String)buscar;
+            ViewBag.resultadoBusqueda = _CategoriaServicio.GetInformacion(buscar);
+            return View();
+        }
+
 
     }
 }
