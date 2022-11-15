@@ -122,6 +122,8 @@ namespace ML.Controllers
         public IActionResult Viaje()
         {
             ViewBag.dato = "";
+
+            return View();
         }
         
         [HttpGet]
@@ -136,6 +138,8 @@ namespace ML.Controllers
         public IActionResult Viaje(ViajeModel viajeModel)
         {
             ViewBag.dato = _ViajeServicio.predecirPrecio(viajeModel);
+
+             return View();
         }
         
         

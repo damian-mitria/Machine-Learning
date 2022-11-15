@@ -8,19 +8,21 @@
 <div class="container">
     <form action="/Home/Viaje" method="post">
         <div class="m-1">
-            <input type="text" name="Vendor_id" class="form-control form-control-lg" />
+            <input type="text" hidden value="CMT" name="Vendor_id" class="form-control form-control-lg" />
         </div>
         <div class="m-1">
-            <input type="number" name="Rate_code" class="form-control form-control-lg" />
+            <input type="number" hidden  value="1" name="Rate_code" class="form-control form-control-lg" />
         </div>
         <div class="m-1">
-            <input type="number" name="Passenger_count" class="form-control form-control-lg" />
+            <input type="number" placeholder="Cantidad de pasajeros"
+             name="Passenger_count" class="form-control form-control-lg" />
         </div>
         <div class="m-1">
-            <input type="number" name="Trip_distance" class="form-control form-control-lg" />
+            <input type="number" placeholder="Distancia"
+             name="Trip_distance" class="form-control form-control-lg" />
         </div>
         <div class="m-1">
-            <input type="text" name="Payment_type" class="form-control form-control-lg" />
+            <input type="text" placeholder="CSH" name="Payment_type" class="form-control form-control-lg" />
         </div>
         <div class="m-2 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary rounded-pill d-none">Enviar</button>
