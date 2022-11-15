@@ -122,6 +122,13 @@ namespace ML.Controllers
         public IActionResult Viaje()
         {
             ViewBag.dato = "";
+        }
+        
+        [HttpGet]
+        public IActionResult Buscar()
+        {
+            ViewBag.resultado = "";
+
             return View();
         }
 
@@ -129,6 +136,14 @@ namespace ML.Controllers
         public IActionResult Viaje(ViajeModel viajeModel)
         {
             ViewBag.dato = _ViajeServicio.predecirPrecio(viajeModel);
+        }
+        
+        
+        public IActionResult Buscar(String buscar)
+        {
+            ViewBag.buscar = (String)buscar;
+            ViewBag.resultadoBusqueda = _CategoriaServicio.GetInformacion(buscar);
+
             return View();
         }
 
