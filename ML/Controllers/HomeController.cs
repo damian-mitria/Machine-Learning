@@ -38,7 +38,6 @@ namespace ML.Controllers
         public IActionResult Foto()
         {
             ViewBag.resultadoFoto = "";
-            ViewBag.resultadoSQL = "";
 
             return View(_ImagesServicio.ObtenerImagenes());
         }
@@ -125,24 +124,22 @@ namespace ML.Controllers
 
             return View();
         }
-        
-        [HttpGet]
-        public IActionResult Buscar()
-        {
-            ViewBag.resultado = "";
-
-            return View();
-        }
 
         [HttpPost]
         public IActionResult Viaje(ViajeModel viajeModel)
         {
             ViewBag.dato = _ViajeServicio.predecirPrecio(viajeModel);
 
-             return View();
+            return View();
         }
-        
-        
+
+        [HttpGet]
+        public IActionResult Buscar()
+        {
+            return View();
+        }
+
+
         public IActionResult Buscar(String buscar)
         {
             ViewBag.buscar = (String)buscar;

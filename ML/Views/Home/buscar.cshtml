@@ -1,4 +1,5 @@
 ﻿@model ML.Controllers.HomeController
+@using ML.Logica;
 @{
     ViewData["Title"] = "Buscar";
 }
@@ -13,8 +14,16 @@
             <button type="submit" class="btn btn-primary rounded-pill d-none">Enviar</button>
         </div>
     </form>
-    <div class="m-1 mt-5 text-center ">
-        <h3>@ViewBag.buscar</h3>
-        <h4 id="resultado">@ViewBag.resultadoBusqueda</h4>
+    <h3 class="text-center mt-3">@ViewBag.buscar</h3>
+    <div class="m-1 mt-5 text-start ">
+        @if (ViewBag.resultadoBusqueda != null)
+        {
+            @foreach (WikipediaResponse resultado in (List<WikipediaResponse>)ViewBag.resultadoBusqueda)
+            {
+                <h4><a href="https://es.wikipedia.org/wiki/@resultado.Title" target="_blank" class="adark">@resultado.Title</a></h4>
+                <h5 id="resultado"> - @Html.Raw(resultado.Snippet)...</h5>
+                <br>
+            }
+        }
     </div>
 </div>

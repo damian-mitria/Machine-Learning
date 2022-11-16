@@ -1,5 +1,5 @@
 @model List<ML.Data.Entidades.Image>
-
+@using ML.Logica;
 @{
     ViewData["Title"] = "Foto";
 }
@@ -44,10 +44,16 @@
         <input type="text" name="porcentaje" class="border-0 d-none" id="porcent" value="@ViewBag.porcentaje" readonly /> %
     </div>
 
-    <div class="m-1 d-flex justify-content-center">
-        <p class="container">
-            @ViewBag.resultadoSQL
-        </p>
+    <div class="m-1 mt-5 text-start">
+        @if (ViewBag.resultadoSQL != null)
+        {
+            @foreach (WikipediaResponse resultado in (List<WikipediaResponse>)ViewBag.resultadoSQL)
+            {
+                <h4><a href="https://es.wikipedia.org/wiki/@resultado.Title" target="_blank" class="adark">@resultado.Title</a></h4>
+                <h5 id="resultado"> - @Html.Raw(resultado.Snippet)...</h5>
+                <br>
+            }
+        }
     </div>
 
     <div class="m-1 mt-5">

@@ -39,10 +39,18 @@ namespace ML.Logica
             WebClient webClient = new WebClient();
             webClient.Encoding = Encoding.UTF8;
             String respuesta = webClient.DownloadString(url);
-            String cadenaSinTags = Regex.Replace(respuesta, "<.*?>", string.Empty); // remuevo los tags que vienen desde la api de wiki
-            dynamic jsonObj = JsonConvert.DeserializeObject(cadenaSinTags);
-            var informacion = jsonObj["query"]["search"][0]["snippet"].ToString();
-            return informacion;
+            //String cadenaSinTags = Regex.Replace(respuesta, "<.*?>", string.Empty); // remuevo los tags que vienen desde la api de wiki
+            dynamic jsonObj = JsonConvert.DeserializeObject(respuesta);
+            List<WikipediaResponse> resultados = new List<WikipediaResponse>();
+            foreach (var item in jsonObj["query"]["search"])
+            {
+                WikipediaResponse WP = new WikipediaResponse();
+                WP.Title = item["title"];
+                WP.Snippet = item["snippet"];
+
+                resultados.Add(WP);
+            }
+            return resultados;
         }
 
         public void guardar(Categorium categoria)
@@ -51,6 +59,13 @@ namespace ML.Logica
             _context.SaveChanges();
         }
 
-     
+
+    }
+
+    public class WikipediaResponse
+    {
+        public string Title { get; set; }
+        public string Snippet { get; set; }
+
     }
 }
